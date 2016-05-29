@@ -15,9 +15,9 @@ router.post("/move", function (req, res) {
   gpio.open(16, "output", function (err) {
     if (err)console.log(err);
     gpio.write(16, 1, function () {
-      sleep(1000);
+      
       gpio.write(16, 0, function () {
-        sleep(1000);
+
         //if (!stopMotors)move();
       });
     });
