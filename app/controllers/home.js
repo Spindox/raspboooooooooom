@@ -12,21 +12,15 @@ router.get("/", function (req, res) {
 });
 
 router.post("/move", function (req, res) {
-  var arr = [25];
-  arr.forEach(function(i){
-    try{
-      gpio.setup(i, gpio.DIR_OUT, function () {
-        gpio.write(i, true, function (err) {
-          if (err) throw err;
-          console.log('Written to pin');
-        });
-      });
+  var i = req.query.pin;
 
-    }catch(e){
-      log.error(e)
-    }
-
+  gpio.setup(i, gpio.DIR_OUT, function(){
+    gpio.write(i, true, function(err) {
+      if (err) throw err;
+      console.log('Written to pin');
+    });
   });
+
 
 
 
