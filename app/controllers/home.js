@@ -2,7 +2,7 @@
  * Created by fgallucci on 29/05/16.
  */
 
-var gpio = require("pi-gpio");
+var gpio = require("rpi-gpio");
 
 var router = module.exports = require('express').Router();
 
@@ -12,24 +12,14 @@ router.get("/", function (req, res) {
 });
 
 router.post("/move", function (req, res) {
-  gpio.close(16,function(err){
-    console.log(err);
-  });
-  gpio.open(16, "output", function (err) {
-    if (err)console.log(err);
-    gpio.write(16, 1, function () {
+  gpio.setup(7, gpio.DIR_OUT, write);
 
-      gpio.write(16, 0, function () {
 
-        //if (!stopMotors)move();
-      });
-    });
-
+  gpio.write(7, true, function(err) {
+    if (err) throw err;
+    console.log('Written to pin');
   });
 
-});
-
-router.post("/stop", function (req, res) {
 
 });
 
