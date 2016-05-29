@@ -12,10 +12,13 @@ router.get("/", function (req, res) {
 });
 
 router.post("/move", function (req, res) {
+  gpio.close(16,function(err){
+    console.log(err);
+  });
   gpio.open(16, "output", function (err) {
     if (err)console.log(err);
     gpio.write(16, 1, function () {
-      
+
       gpio.write(16, 0, function () {
 
         //if (!stopMotors)move();
