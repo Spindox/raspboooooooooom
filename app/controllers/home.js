@@ -12,12 +12,16 @@ router.get("/", function (req, res) {
 });
 
 router.post("/move", function (req, res) {
-  gpio.setup(16, gpio.DIR_OUT, function(){
-    gpio.write(16, true, function(err) {
-      if (err) throw err;
-      console.log('Written to pin');
+  var arr = [25];
+  arr.forEach(function(i){
+    gpio.setup(i, gpio.DIR_OUT, function(){
+      gpio.write(i, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+      });
     });
   });
+
 
 
 
