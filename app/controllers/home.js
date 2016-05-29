@@ -12,8 +12,15 @@ router.get("/",function(req,res){
 });
 
 router.post("/move",function(req,res){
-  gpio.open(0,1,2,"output",function(err){
+  gpio.open(0,"output",function(err){
     if(err)console.log(err);
+    gpio.open(1,"output",function(err){
+      if(err)console.log(err);
+      gpio.open(2,"output",function(err){
+        if(err)console.log(err);
+      });
+    });
+
   });
   gpio.write(0, function() {
     console.log("0");
